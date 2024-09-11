@@ -6,7 +6,8 @@ Created on Tue Sep 10 17:26:57 2024
 """
 
 import pandas as pd
-data =  pd.read_csv("50_Startups.csv")
+import numpy as np
+dataset =  pd.read_csv("50_Startups.csv")
 X = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, -1].values
 
@@ -22,7 +23,9 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [3])], remainder='passthrough')
 X = np.array(ct.fit_transform(X))
-print(X)
+
+#eliminar dummy que sobra (la trampa)
+X = X[:,1:]
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.model_selection import train_test_split
@@ -32,3 +35,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, rando
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(X_train, y_train)
+
+#comparar amb la variable y_test
+y_pred = regressor.predict(X_test)
+

@@ -47,16 +47,20 @@ y =y.ravel() #passem a vector de nou
 X_svr = svr_reg.fit(X,y)
 
 #al estar escalat cal enviar el 6.5 escalat 
-val = X_svr.predict(sc_X.transform([[6.5]])).reshape(-1,1)
+sc_y.inverse_transform(X_svr.predict(sc_X.transform([[6.5],[7]])).reshape(-1,1))
+
 #desescalem i tenim el valor
-sc_y.inverse_transform(val)
+x_desescalat = sc_X.inverse_transform(X)
+y_desescalat = sc_y.inverse_transform(y.reshape(-1,1))
+
+x_grid = np.arange(min(x_desescalat),max(x_desescalat), 0.1).reshape(-1,1)
+y_predit_desescalat = sc_y.inverse_transform(X_svr.predict(sc_X.transform(x_grid)).reshape(-1,1))
 
 
 #fem el grafic amb més un punts per suabitzar (sinó substituir per X)
-x_grid = np.arange(min(X),max(X), 0.1)
-x_grid = x_grid.reshape(len(x_grid),1)
-plt.scatter(X, y, color = 'red')
-plt.plot(x_grid, X_svr.predict(x_grid), color = 'blue')
+plt.scatter(x_desescalat, y_desescalat, color = 'red')
+plt.plot(x_desescalat, y_desescalat, color = 'blue')
+plt.plot(x_grid, y_predit_desescalat, color = 'blue')
 plt.title('Truth or Bluff (Polynomial Regression)')
 plt.xlabel('Position level')
 plt.ylabel('Salary')

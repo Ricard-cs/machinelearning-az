@@ -82,9 +82,7 @@ regresio_OLS.summary()
 x_opt = X[:,[0,3,5]]
 #cal posar una columna plena d'uns per tenir en compte la intercept (si cal eliminar-la)
 regresio_OLS = sm.OLS(endog =y, exog = x_opt.tolist()).fit()
-
 regresio_OLS.summary()
-
 
 x_opt = X[:,[0,3]]
 #cal posar una columna plena d'uns per tenir en compte la intercept (si cal eliminar-la)

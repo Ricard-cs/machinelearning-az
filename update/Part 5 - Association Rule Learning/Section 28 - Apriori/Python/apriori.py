@@ -16,6 +16,7 @@ for i in range(0, 7501):
 # Training the Apriori model on the dataset
 from apyori import apriori
 rules = apriori(transactions = transactions, min_support = 0.003, min_confidence = 0.2, min_lift = 3, min_length = 2, max_length = 2)
+#mirar el video per veure els hiperparams
 
 # Visualising the results
 
@@ -38,3 +39,4 @@ resultsinDataFrame
 
 ## Displaying the results sorted by descending lifts
 resultsinDataFrame.nlargest(n = 10, columns = 'Lift')
+

@@ -7,7 +7,8 @@ import pandas as pd
 
 # Importing the dataset
 dataset = pd.read_csv('Mall_Customers.csv')
-X = dataset.iloc[:, [3, 4]].values
+
+X = dataset.iloc[:, [0, 4]].values
 
 # Using the elbow method to find the optimal number of clusters
 from sklearn.cluster import KMeans
@@ -38,3 +39,5 @@ plt.xlabel('Annual Income (k$)')
 plt.ylabel('Spending Score (1-100)')
 plt.legend()
 plt.show()
+
+#si es volen utilitzar totes variables. passar a numeric les categoriques, estararitzar

@@ -17,6 +17,8 @@ plt.xlabel('Customers')
 plt.ylabel('Euclidean distances')
 plt.show()
 
+#el num de cluster es la lina més llarga que no talla cap linia horitzonal.
+
 # Training the Hierarchical Clustering model on the dataset
 from sklearn.cluster import AgglomerativeClustering
 hc = AgglomerativeClustering(n_clusters = 5, affinity = 'euclidean', linkage = 'ward')
@@ -33,3 +35,4 @@ plt.xlabel('Annual Income (k$)')
 plt.ylabel('Spending Score (1-100)')
 plt.legend()
 plt.show()
+
